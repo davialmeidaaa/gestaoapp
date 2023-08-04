@@ -27,7 +27,7 @@
 
                                 <th class="center-block text-center align-middle">Cliente</th>
                                 <th class="center-block text-center align-middle">CNPJ</th>
-                                <th class="center-block text-center align-middle">Municipio</th>
+                                <th class="center-block text-center align-middle">Cidade</th>
                                 <th class="center-block text-center align-middle">UF</th>
                                 <th class="center-block text-center align-middle">Email</th>
                                 <th class="center-block text-center align-middle">Telefone</th>
@@ -35,26 +35,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            {% for cliente in clientes %}
                             <tr>
                                 
-                                <td class="align-middle text-center align-middle"></td>
-                                <td class="align-middle text-center align-middle"></td>
-                                <td class="align-middle text-center align-middle"></td>
-                                <td class="align-middle text-center align-middle"></td>
-                                <td class="align-middle text-center align-middle"></td>
-                                <td class="align-middle text-center align-middle"></td>
+                                <td class="align-middle text-center align-middle">{{cliente.nome}}</td>
+                                <td class="align-middle text-center align-middle">{{cliente.cnpj}}</td>
+                                <td class="align-middle text-center align-middle">{{cliente.cidade}}</td>
+                                <td class="align-middle text-center align-middle">{{cliente.uf}}</td>
+                                <td class="align-middle text-center align-middle">{{cliente.email}}</td>
+                                <td class="align-middle text-center align-middle">{{cliente.telefone}}</td>
 
                                 <td name="bstable-actions" class="align-middle text-center">
                                     <div class="btn-list d-flex justify-content-center">
                                         <a id="bEdit" type="button" class="btn btn-sm btn-primary"
-                                            href="#">
+                                            href="{% url 'clientes:editar_cliente' cliente.id %}">
                                             <span class="fe fe-edit" title="Avaliar Solicitação"> </span>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
-                            
+                            {% endfor %}
                         </tbody>
                     </table>
 

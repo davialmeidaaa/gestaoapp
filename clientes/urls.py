@@ -14,4 +14,9 @@ urlpatterns = [
         views.lista_clientes,
         name='lista_clientes'
     ),
+    path(
+        'editar_cliente/<int:id>/',
+        views.editar_cliente,
+        name='editar_cliente'
+    ),
 ]
