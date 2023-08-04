@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Gestão App - Lista Rótulos {% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'assets/modulo-ausencias/css/lista_solicitacoes.css' %}">
+
+<div class="row row-sm">
+    <div class="col-lg-12">
+        <div class="card">
+            <div style="margin-top: 10px;">
+                {% include 'partials/messages.html' %}
+            </div>
+            <div class="card-header">
+                <div class="col-xl-11">
+                    <h3 class="card-title">Lista Rótulos</h3>
+                </div>
+            </div>
+            <div class="card-body col-sm-12 col-md-12">
+                <div class="table-responsive">
+
+                    <table id="basic-datatable" class="table table-bordered key-buttons border-bottom">
+                        <thead>
+                            <tr>
+
+                                <th class="center-block text-center align-middle">Cliente</th>
+                                <th class="center-block text-center align-middle">Rótulo</th>
+                                <th class="center-block text-center align-middle">Data Criação</th>
+                                <th class="center-block text-center align-middle">Documentação Recebida?</th>
+                                <th class="center-block text-center align-middle">Valor Cobrado</th>
+                                <th class="center-block text-center align-middle">Valor Recebido</th>
+                                <th class="center-block text-center align-middle">Status</th>
+                                <th class="center-block text-center align-middle">Data Entrega</th>
+                                <th class="center-block text-center align-middle" name="bstable-actions">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rotulo in rotulos %}
+                            <tr>
+                                
+                                <td class="align-middle text-center align-middle">{{rotulo.cliente}}</td>
+                                <td class="align-middle text-center align-middle">{{rotulo.tipo_rotulo}}</td>
+                                <td class="align-middle text-center align-middle">{{rotulo.data_criacao|date:"d/m/Y"}}</td>
+                                {% if rotulo.documentacao == 1 %}
+                                <td class="align-middle text-center align-middle">Sim</td>
+                                {% else %}
+                                <td class="align-middle text-center align-middle">Não</td>
+                                {% endif %}
+                                <td class="align-middle text-center align-middle">{{ rotulo.valor_cobrado_formatado }}</td>
+                                <td class="align-middle text-center align-middle">{{ rotulo.valor_recebido_formatado }}</td>
+                                <td class="align-middle text-center align-middle">
+                                    <span class="badge bg-green status d-flex align-items-center justify-content-center">
+                                        {{rotulo.status}}
+                                    </span>
+                                </td>
+                                <td class="align-middle text-center align-middle">{{rotulo.data_entrega|date:"d/m/Y"}}</td>
+
+                                <td name="bstable-actions" class="align-middle text-center">
+                                    <div class="btn-list d-flex justify-content-center">
+                                        <a id="bEdit" type="button" class="btn btn-sm btn-primary"
+                                            href="{% url 'rotulos:editar_rotulo' rotulo.id %}">
+                                            <span class="fe fe-edit" title="Avaliar Solicitação"> </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.status').each(function () {
+            var statusText = $(this).text().trim();
+
+            if (statusText === 'Entregue') {
+                $(this).css('background-color', '#006B5C');
+            } else if (statusText === 'Entregar') {
+                $(this).css('background-color', '#FF9500');
+            } else if (statusText === 'Pendente') {
+                $(this).css('background-color', '#800020');
+            } else if (statusText === 'Confeccionar') {
+                $(this).css('background-color', '#0000FF');
+            }
+        });
+    });
+
+</script>
+
+<style>
+    .status {
+    padding: 4px 8px;
+    height: 24px;
+    border-radius: 20px;
+}
+</style>
+
+{% endblock %}

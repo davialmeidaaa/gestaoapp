@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %} Gestão App - Adicionar Rotulo {% endblock %}
+
+{% block content %}
+
+<div class="side-app">
+    <div class="main-container container-fluid">
+        <div class="row">
+
+            <div class="card">
+                <div class="card-body pt-1">
+                    <div class="row card-header px-3">
+                        <h1 class="card-title ">Adicionar Rotulo</h1>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                        <div style="margin-top: 10px;">
+                            {% include 'partials/messages.html' %}
+                        </div>
+                        <form id="form_solicitacao" action="" method="POST" autocomplete="off"
+                            enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-xl-6 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Cliente {% if form.cliente.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.cliente | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.cliente.errors }}
+                                </div>
+                                <div class="col-xl-6 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Tipo Rótulo {% if form.tipo_rotulo.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.tipo_rotulo | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.tipo_rotulo.errors }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xl-6 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Valor Cobrado {% if form.valor_cobrado.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.valor_cobrado | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.valor_cobrado.errors }}
+                                </div>
+                                <div class="col-xl-6 mb-1 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Valor Recebido {% if form.valor_recebido.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.valor_recebido | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.valor_recebido.errors }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xl-3 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Documentação {% if form.documentacao.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                </div>
+                                <div class="mb-2 col-xl-12 custom-switch form-switch d-flex">
+                                    <label class="custom-switch form-switch me-3">
+                                      {{ form.documentacao | add_class:"custom-switch-input" | attr:"type:checkbox" }}
+                                      {{ form.documentacao.errors }}
+                                      <span class="custom-switch-indicator ml-1"></span>
+                                    </label>
+                                    <label class="my-auto mb-4">Documentação Recebida para Fazer o Rótulo?</label>
+                                  </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xl-3 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Data de Entrega do Rótulo {% if form.data_entrega.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.data_entrega | add_class:"form-control col-sm-12 form_fields_colaborador date_picker" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.data_entrega.errors }}
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary mt-6 col-xl-2 elemento" type="submit">Salvar</button>
+                            <a class="elemento col-xl-1"></a>
+                            <a class="btn btn-outline-default mt-6 col-xl-2" type="submit"
+                            href="{{request.META.HTTP_REFERER}}">Voltar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
