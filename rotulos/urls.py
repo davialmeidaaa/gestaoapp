@@ -14,4 +14,9 @@ urlpatterns = [
         views.listar_rotulo,
         name='listar_rotulo'
     ),
+    path(
+        'editar_rotulo/<int:id>/',
+        views.editar_rotulo,
+        name='editar_rotulo'
+    ),
 ]

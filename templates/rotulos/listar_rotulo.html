@@ -50,13 +50,17 @@
                                 {% endif %}
                                 <td class="align-middle text-center align-middle">{{ rotulo.valor_cobrado_formatado }}</td>
                                 <td class="align-middle text-center align-middle">{{ rotulo.valor_recebido_formatado }}</td>
-                                <td class="align-middle text-center align-middle">{{rotulo.status}}</td>
+                                <td class="align-middle text-center align-middle">
+                                    <span class="badge bg-green status d-flex align-items-center justify-content-center">
+                                        {{rotulo.status}}
+                                    </span>
+                                </td>
                                 <td class="align-middle text-center align-middle">{{rotulo.data_entrega|date:"d/m/Y"}}</td>
 
                                 <td name="bstable-actions" class="align-middle text-center">
                                     <div class="btn-list d-flex justify-content-center">
                                         <a id="bEdit" type="button" class="btn btn-sm btn-primary"
-                                            href="#">
+                                            href="{% url 'rotulos:editar_rotulo' rotulo.id %}">
                                             <span class="fe fe-edit" title="Avaliar Solicitação"> </span>
                                         </a>
                                     </div>
@@ -72,6 +76,31 @@
     </div>
 </div>
 
-<script src="{% static 'assets/modulo-ausencias/js/lista_solicitacoes.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $('.status').each(function () {
+            var statusText = $(this).text().trim();
+
+            if (statusText === 'Entregue') {
+                $(this).css('background-color', '#006B5C');
+            } else if (statusText === 'Entregar') {
+                $(this).css('background-color', '#FF9500');
+            } else if (statusText === 'Pendente') {
+                $(this).css('background-color', '#800020');
+            } else if (statusText === 'Confeccionar') {
+                $(this).css('background-color', '#0000FF');
+            }
+        });
+    });
+
+</script>
+
+<style>
+    .status {
+    padding: 4px 8px;
+    height: 24px;
+    border-radius: 20px;
+}
+</style>
 
 {% endblock %}

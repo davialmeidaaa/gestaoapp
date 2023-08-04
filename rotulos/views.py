@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from rotulos.forms import RotuloForm
 from rotulos.models import Rotulo
 
@@ -43,3 +43,18 @@ def listar_rotulo(request):
     return render(request, 'rotulos/listar_rotulo.html', context)
 
 
+def editar_rotulo(request, id):
+    
+    rotulos = get_object_or_404(Rotulo, id=id)
+    form = RotuloForm(request.POST or None, instance=rotulos)
+
+    if form.is_valid():
+        form.save()
+        return redirect('rotulos:listar_rotulo')
+
+    context = {
+        'form': form,
+        'rotulos': rotulos
+    }
+
+    return render(request, 'rotulos/adicionar_rotulo.html', context)
