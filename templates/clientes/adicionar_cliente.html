@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %} Gestão App - Adicionar Cliente {% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'assets/modulo-ausencias/css/solicitar_ausencia.css' %}">
+
+<div class="side-app">
+    <div class="main-container container-fluid">
+        <div class="row">
+
+            <div class="card">
+                <div class="card-body pt-1">
+                    <div class="row card-header px-3">
+                        <h1 class="card-title ">Adicionar Cliente</h1>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                        <div style="margin-top: 10px;">
+                            {% include 'partials/messages.html' %}
+                        </div>
+                        <form id="form_solicitacao" action="" method="POST" autocomplete="off"
+                            enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-xl-4 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Nome {% if form.nome.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.nome | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.nome.errors }}
+                                </div>
+                                <div class="col-xl-4 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Nome Fantasia {% if form.nome_fantasia.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.nome_fantasia | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.nome_fantasia.errors }}
+                                </div>
+                                <div class="col-xl-4 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">CNPJ {% if form.cnpj.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.cnpj | add_class:"form-control col-sm-12 form_fields_colaborador cnpj-mask" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.cnpj.errors }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xl-7 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Endereço {% if form.endereco.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.endereco | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.endereco.errors }}
+                                </div>
+                                <div class="col-xl-1 mb-1 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Número {% if form.numero.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.numero | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.numero.errors }}
+                                </div>
+                                <div class="col-xl-4 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Complemento {% if form.complemento.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.complemento | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.complemento.errors }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xl-3 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">CEP {% if form.cep.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.cep | add_class:"form-control col-sm-12 form_fields_colaborador cep-mask" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.cep.errors }}
+                                </div>
+                                <div class="col-xl-3 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Bairro {% if form.bairro.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.bairro | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.bairro.errors }}
+                                </div>
+                                <div class="col-xl-3 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Cidade {% if form.cidade.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.cidade | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.cidade.errors }}
+                                </div>
+                                <div class="col-xl-3 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">UF {% if form.uf.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.uf | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.uf.errors }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xl-6 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Email {% if form.email.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.email | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.email.errors }}
+                                </div>
+
+                                <div class="col-xl-6 mb-2 mt-5">
+                                    <label for="form_add_colaborador_nome_id_for_label">Telefone {% if form.telefone.field.required %}<span class="text-danger"> *</span>{% endif %}</label>
+                                    {{ form.telefone | add_class:"form-control col-sm-12 form_fields_colaborador" | attr:"style:text-transform: uppercase" }}
+                                    {{ form.telefone.errors }}
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary mt-6 col-xl-2 elemento" type="submit">Salvar</button>
+                            <a class="elemento col-xl-1"></a>
+                            <a class="btn btn-outline-default mt-6 col-xl-2" type="submit"
+                            href="{{request.META.HTTP_REFERER}}">Voltar</a>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $(document).ready(function () {
+            $(".cnpj-mask").mask("00.000.000/0000-00");
+            $(".cep-mask").mask("00000-000");
+        });
+    });
+</script>
+
+{% endblock %}
