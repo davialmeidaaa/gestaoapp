@@ -1,1 +1,0 @@
-web: gunicorn PeopleApp.wsgi --log-file -
