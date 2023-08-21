@@ -23,3 +23,6 @@ class Rotulo(models.Model):
             return "Entregar"
         elif self.documentacao and self.valor_recebido is not None and self.data_entrega is not None:
             return "Entregue"
+        elif self.data_entrega is not None and self.valor_recebido is None:
+            return "À Receber"
+

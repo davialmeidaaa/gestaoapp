@@ -40,13 +40,13 @@
                             {% for rotulo in rotulos %}
                             <tr>
                                 
-                                <td class="align-middle text-center align-middle">{{rotulo.cliente}}</td>
-                                <td class="align-middle text-center align-middle">{{rotulo.tipo_rotulo}}</td>
+                                <td class="align-middle text-center align-middle text-uppercase">{{rotulo.cliente}}</td>
+                                <td class="align-middle text-center align-middle text-uppercase">{{rotulo.tipo_rotulo}}</td>
                                 <td class="align-middle text-center align-middle">{{rotulo.data_criacao|date:"d/m/Y"}}</td>
                                 {% if rotulo.documentacao == 1 %}
-                                <td class="align-middle text-center align-middle">Sim</td>
+                                <td class="align-middle text-center align-middle text-uppercase">Sim</td>
                                 {% else %}
-                                <td class="align-middle text-center align-middle">Não</td>
+                                <td class="align-middle text-center align-middle text-uppercase">Não</td>
                                 {% endif %}
                                 <td class="align-middle text-center align-middle">{{ rotulo.valor_cobrado_formatado }}</td>
                                 <td class="align-middle text-center align-middle">{{ rotulo.valor_recebido_formatado }}</td>
@@ -59,10 +59,14 @@
 
                                 <td name="bstable-actions" class="align-middle text-center">
                                     <div class="btn-list d-flex justify-content-center">
-                                        <a id="bEdit" type="button" class="btn btn-sm btn-primary"
-                                            href="{% url 'rotulos:editar_rotulo' rotulo.id %}">
-                                            <span class="fe fe-edit" title="Avaliar Solicitação"> </span>
+                                        <a id="bEdit" type="button" class="btn btn-sm btn-primary" href="{% url 'rotulos:editar_rotulo' rotulo.id %}">
+                                            <span class="fe fe-edit" title="Editar Rótulo"></span>
                                         </a>
+                                        <a id="bDelete" type="button" class="btn btn-sm btn-danger"
+                                            onclick="confirmDelete({{ rotulo.id }}, '{% url 'rotulos:deletar_rotulo' 0 %}'.slice(0, -2))">
+                                            <span class="fe fe-trash" style="color: white;" title="Deletar Rótulo"></span>
+                                        </a>
+                                                                           
                                     </div>
                                 </td>
                             </tr>
@@ -89,18 +93,46 @@
                 $(this).css('background-color', '#800020');
             } else if (statusText === 'Confeccionar') {
                 $(this).css('background-color', '#0000FF');
+            } else if (statusText === 'À Receber') {
+                $(this).css('background-color', '#FF69B4');  // Rosa (Hot Pink) como exemplo
             }
         });
     });
+</script>
+
+<script>
+    function confirmDelete(rotuloId, baseUrl) {
+    swal({
+        title: "Tem certeza?",
+        text: "Uma vez deletado, você não poderá recuperar este rótulo!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = baseUrl + rotuloId + '/';
+            form.innerHTML = '{% csrf_token %}';
+            document.body.appendChild(form);
+            form.submit();
+        }
+    });
+}
 
 </script>
 
 <style>
     .status {
-    padding: 4px 8px;
-    height: 24px;
-    border-radius: 20px;
-}
+        padding: 4px 8px;
+        height: 24px;
+        border-radius: 20px;
+    }   
+
+    .btn-danger {
+        color: white;
+    }
 </style>
 
 {% endblock %}

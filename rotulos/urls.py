@@ -19,4 +19,9 @@ urlpatterns = [
         views.editar_rotulo,
         name='editar_rotulo'
     ),
+    path(
+        'deletar_rotulo/<int:id>/',
+        views.deletar_rotulo,
+        name='deletar_rotulo'
+    ),
 ]

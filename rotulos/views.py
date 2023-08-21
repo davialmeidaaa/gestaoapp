@@ -8,7 +8,7 @@ def adicionar_rotulo(request):
         form = RotuloForm(request.POST)
         if form.is_valid():
             form.save()
-            # return redirect('nomedaurlpararedirecionar')
+            return redirect('rotulos:listar_rotulo')
         else:
             print(form.errors) # imprime os erros de validação
     else:
@@ -58,3 +58,17 @@ def editar_rotulo(request, id):
     }
 
     return render(request, 'rotulos/adicionar_rotulo.html', context)
+
+
+def deletar_rotulo(request, id):
+    rotulo = get_object_or_404(Rotulo, id=id)
+    
+    if request.method == "POST":
+        rotulo.delete()
+        return redirect('rotulos:listar_rotulo')
+
+    context = {
+        'rotulo': rotulo
+    }
+    
+    return render(request, 'rotulos/confirma_deletar.html', context)
