@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/logo.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/brand/logo gestao app/Logo Final.png' %}">
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
@@ -49,7 +49,7 @@
 </head>
 
 
-<body id="id-body" class="app sidebar-mini ltr light-mode dark-menu header-light"     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' >
+<body id="id-body" class="app sidebar-mini ltr light-mode header-light"     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' >
 
     <!-- GLOBAL-LOADER -->
     <div id="global-loader" class="bg-black">
@@ -181,17 +181,17 @@
                     <div class="side-header">
                         <a class="header-brand1" href="#">
                             <!-- Logo sidemenu aberto - MODO ESCURO -->
-                            <img src="{% static 'assets/images/brand/nova-logo.png' %}"
-                                class="header-brand-img desktop-logo" alt="logo" height="53">
+                            <img src="{% static 'assets/images/brand/logo gestao app/logomarca_branco.png' %}"
+                                class="header-brand-img desktop-logo" alt="logo" height="110">
                             <!-- Logo sidemenu fechado - MODO ESCURO -->
-                            <img src="{% static 'assets/images/brand/logo.png' %}"
-                                class="header-brand-img toggle-logo" alt="logo">
+                            <img src="{% static 'assets/images/brand/logo gestao app/Logo Final.png' %}"
+                                class="header-brand-img toggle-logo" alt="logo" height="200">
                             <!-- Logo sidemenu fechado - MODO CLARO -->
-                            <img src="{% static 'assets/images/brand/logo.png' %}"
-                                class="header-brand-img light-logo" alt="logo">
+                            <img src="{% static 'assets/images/brand/logo gestao app/Logo Final.png' %}"
+                                class="header-brand-img light-logo" alt="logo" height="200">
                             <!-- Logo sidemenu aberto - MODO CLARO -->
-                            <img src="{% static 'assets/images/brand/nova-logo.png' %}"
-                                class="header-brand-img light-logo1" alt="logo" height="51">
+                            <img src="{% static 'assets/images/brand/logo gestao app/logomarca_branco.png' %}"
+                                class="header-brand-img light-logo1" alt="logo" height="110">
                         </a>
                         <!-- LOGO -->
                     </div>
@@ -558,7 +558,30 @@
             $("#id-body").removeClass("gradient-menu");
         });
 
+        // Função para alterar a cor de fundo
+    function changeBackgroundColor() {
+      // Seletor para ambas as classes
+      var selector = '.app-sidebar, .side-header';
+
+      // Cor desejada (#1C211F)
+      var newBgColor = '#1C211F';
+
+      // Alterar a cor de fundo
+      $(selector).css('background-color', newBgColor);
+    }
+
+    // Chamar a função quando o documento estiver pronto
+    $(document).ready(function() {
+      changeBackgroundColor();
+    });
+
     </script>
+
+    <style>
+        .side-header{
+            border-bottom: none;
+        }
+    </style>
 
     <style>
         {
@@ -594,6 +617,14 @@
 
         .avatar-title{
         color: transparent !important;
+        }
+
+        .side-menu__label{
+            color: #908D8D !important;
+        }
+
+        .side-menu__icon{
+            color: #2B3E6A !important;
         }
 
     </style>

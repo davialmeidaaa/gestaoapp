@@ -1,0 +1,36 @@
+bg-color sidebar: #1C211F
+
+text-color sidebar: #535755
+
+icon-color sidebar: primary
+
+text-icon-color sidebar: #908D8D
+
+
+Formatação de Cep + Cpf + Cnpj + Celular + Fone Fixo (Para preguiçoso tipo EU KKKK)
+
+ Cep
+
+Delimiter(s)  = -
+Custom Format = (5,3)
+
+Cpf
+
+Delimiter(s)  = ./,/./,/-
+Custom Format = (3,3,3,2)
+
+Cnpj
+
+Delimiter(s)  = ./,/./,///,/-
+Custom Format = (2,3,3,4,2)
+
+ 
+Celular (Ja com espaço entre o DDD e Nº)
+
+Delimiter(s)  = (/,/) /,/-
+Custom Format = (2,3,3,4,2)
+
+Fone Fixo (Ja com espaço entre o DDD e Nº)
+
+Delimiter(s)  = (/,/) /,/-
+Custom Format = (0,2,4,4)
