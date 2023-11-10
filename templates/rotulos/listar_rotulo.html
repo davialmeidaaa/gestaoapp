@@ -14,8 +14,13 @@
                 {% include 'partials/messages.html' %}
             </div>
             <div class="card-header">
-                <div class="col-xl-11">
-                    <h3 class="card-title">Lista Rótulos</h3>
+                <div class="col-xl-12 d-flex">
+                    <h3 id="view-title" class="card-title col-xl-6 px-0 titulo-agenda d-flex align-items-center">Lista de Rótulos</h3>
+
+                    <div class="btn btn-group col-xl-6 d-flex justify-content-end p-0">
+                        <button type="button" title="Solicitações Gerais" aria-pressed="true" class="btn btn-primary btn-active" id="visualizarSolicitacoes">Rótulos</button>
+                        <a type="button" title="Histórico de Solicitações" aria-pressed="false" class="btn btn-default " id="historicoSolicitacoes" href="#">Personalizados</a>
+                    </div>
                 </div>
             </div>
             <div class="card-body col-sm-12 col-md-12">
